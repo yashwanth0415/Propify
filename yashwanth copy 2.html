@@ -1,0 +1,249 @@
+<html>
+<head>
+    <title>Propify</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.3/css/all.min.css" rel="stylesheet"/>
+    <link href="https://fonts.googleapis.com/css2?family=Roboto:wght@400;700&display=swap" rel="stylesheet"/>
+    <style>
+    .animate-fade-in {
+        animation: fadeIn 2s ease-in-out;
+    }
+    @keyframes fadeIn {
+        from { opacity: 0; }
+        to { opacity: 1; }
+    }
+    .card {
+        transition: transform 0.3s ease, box-shadow 0.3s ease;
+    }
+    .card:hover {
+        transform: translateY(-10px);
+        box-shadow: 0 10px 20px rgba(0, 0, 0, 0.2);
+    }
+    .card img {
+        transition: transform 0.3s ease;
+    }
+    .card:hover img {
+        transform: scale(1.05);
+    }
+    .header-bg {
+        background: linear-gradient(to right, #6067ea, #1a1a1a);
+        position: relative;
+        overflow: hidden;
+    }
+    .header-bg::before {
+        content: '';
+        position: absolute;
+        top: 0;
+        left: 0;
+        width: 100%;
+        height: 100%;
+        background: url("renovation.jpg") no-repeat center center/cover;
+        opacity: 0.2;
+        z-index: 0;
+    }
+    .header-content {
+        position: relative;
+        z-index: 1;
+    }
+    .footer-bg {
+        background: linear-gradient(to right, #8f94fb, #4e54c8);
+    }
+    .main-bg {
+        background-image: url("background.jpg");
+        background-size: cover;
+        background-position: center;
+        padding: 2rem;
+        border-radius: 0.5rem;
+        box-shadow: 0 10px 20px rgba(0, 0, 0, 0.2);
+        animation: fadeIn 1s forwards;
+    }
+    .nav-link {
+        position: relative;
+        display: inline-block;
+        padding: 0.5rem 1rem;
+        color: #ffffff;
+        text-decoration: none;
+        transition: color 0.3s ease;
+    }
+    .nav-link::before, .nav-link::after {
+        content: '';
+        position: absolute;
+        width: 100%;
+        height: 2px;
+        background-color: #e2e8f0;
+        transition: transform 0.3s ease;
+    }
+    .nav-link::before {
+        top: 0;
+        left: 0;
+        transform: scaleX(0);
+        transform-origin: right;
+    }
+    .nav-link::after {
+        bottom: 0;
+        right: 0;
+        transform: scaleX(0);
+        transform-origin: left;
+    }
+    .nav-link:hover {
+        color: #fff;
+    }
+    .nav-link:hover::before, .nav-link:hover::after {
+        transform: scaleX(1);
+    }
+    .custom-font {
+        font-family: 'Gabriola', cursive;
+        font-size: 3rem;
+    }
+    .animate-slide-down {
+        animation: slideDown 1s ease-out;
+    }
+    @keyframes slideDown {
+        from {
+            transform: translateY(-100%);
+            opacity: 0;
+        }
+        to {
+            transform: translateY(0);
+            opacity: 1;
+        }
+    }
+    .header-bg {
+        background: linear-gradient(to right, #6067ea, #1a1a1a);
+        position: relative;
+        overflow: hidden;
+    }
+    .header-bg::before {
+        content: '';
+        position: absolute;
+        top: 0;
+        left: 0;
+        width: 100%;
+        height: 100%;
+        background: url("renovation.jpg") no-repeat center center/cover;
+        opacity: 0.2;
+        z-index: 0;
+    }
+    .header-content {
+        position: relative;
+        z-index: 1;
+    }
+        .animate-slide-down {
+            animation: slideDown 1s ease-out;
+        }
+        @keyframes slideDown {
+            from {
+                transform: translateY(-100%);
+                opacity: 0;
+            }
+            to {
+                transform: translateY(0);
+                opacity: 1;
+            }
+        }
+        .animate-slide-up {
+            animation: slideUp 1s ease-out;
+        }
+        @keyframes slideUp {
+            from {
+                transform: translateY(100%);
+                opacity: 0;
+            }
+            to {
+                transform: translateY(0);
+                opacity: 1;
+            }
+        }
+        .animate-slide-left {
+            animation: slideLeft 1s ease-out;
+        }
+        @keyframes slideLeft {
+            from {
+                transform: translateX(-100%);
+                opacity: 0;
+            }
+            to {
+                transform: translateX(0);
+                opacity: 1;
+            }
+        }
+        .animate-slide-right {
+            animation: slideRight 1s ease-out;
+        }
+        @keyframes slideRight {
+            from {
+                transform: translateX(100%);
+                opacity: 0;
+            }
+            to {
+                transform: translateX(0);
+                opacity: 1;
+            }
+        }
+    </style>
+</head>
+<body class="font-roboto bg-gray-100">
+    <header class="header-bg shadow-md animate-slide-down">
+        <div class="container mx-auto flex justify-between items-center py-4 px-6 header-content">
+            <div class="flex items-center">
+                <img alt="Propify logo" class="h-10" height="50" src='logo.jpg' width="50"/>
+                <span class="ml-5 text-x1 font-bold text-white custom-font">Propify</span>
+                <span class="ml-2 text-gray-200">secure and easy property handling</span>
+            </div>
+            <div>
+                <a class="nav-link mx-2 font-bold" href="yashwanth.html">Home</a>
+                <a class="nav-link mx-2 font-bold" href="signinpage.html">Sign In</a>
+            </div>
+        </div>
+    </header>
+    <main class="container mx-auto mt-8 main-bg p-8 rounded-lg shadow-lg animate-slide-up">
+        <h1 class="text-4xl font-bold text-center mb-8 text-white">Welcome to Propify</h1>
+        <div class="flex flex-wrap justify-center">
+            <div class="w-full md:w-1/3 p-4 animate-slide-left">
+                <a href="newhouse.html" class="block card bg-white rounded-lg shadow-lg overflow-hidden">
+                    <img alt="A beautiful house with a garden" class="w-full h-48 object-cover" height="400" src="https://storage.googleapis.com/a1aa/image/Ns1HLO49_T-rnqGkmTsthKCezMvOvC7U2euvdqOjwV4.jpg" width="600"/>
+                    <div class="p-4">
+                        <h2 class="text-xl font-bold mb-2">Property</h2>
+                        <p class="text-gray-600 mb-4">Manage and view all available houses for rent.</p>
+                    </div>
+                </a>
+            </div>
+            <div class="w-full md:w-1/3 p-4 animate-slide-up">
+                <a href="signinpageowner.html" class="block card bg-white rounded-lg shadow-lg overflow-hidden">
+                    <img alt="A house with keys in the foreground" class="w-full h-48 object-cover" height="400" src="https://storage.googleapis.com/a1aa/image/5hL1BMLWBdUdcIEQ1MrYb-D8ZBe9dK8Wl8D623RnLm0.jpg" width="600"/>
+                    <div class="p-4">
+                        <h2 class="text-xl font-bold mb-2">Owners</h2>
+                        <p class="text-gray-600 mb-4">Manage property owners and their listings.</p>
+                    </div>
+                </a>
+            </div>
+            <div class="w-full md:w-1/3 p-4 animate-slide-right">
+                <a href="signinpagetenant.html" class="block card bg-white rounded-lg shadow-lg overflow-hidden">
+                    <img alt="A smiling person holding a document" class="w-full h-48 object-cover" height="400" src="https://storage.googleapis.com/a1aa/image/KjHIg-Td0WJCptR9gV7dpjzBeiYQ0K8O6B0MOYwv0Fg.jpg" width="600"/>
+                    <div class="p-4">
+                        <h2 class="text-xl font-bold mb-2">Tenants</h2>
+                        <p class="text-gray-600 mb-4">Manage tenant information and rental agreements.</p>
+                    </div>
+                </a>
+            </div>
+        </div>
+    </main>
+    <footer class="footer-bg shadow-md mt-8 bg-gradient-to-r from-gray-900 to-black text-white py-6">
+        <div class="container mx-auto text-center">
+            <div class="flex justify-center space-x-6 mb-4">
+                <a href="https://www.instagram.com" target="_blank">
+                    <img src="https://img.icons8.com/ios-filled/30/ffffff/instagram-new.png" alt="Instagram">
+                </a>
+                <a href="https://wa.me/yourwhatsappnumber" target="_blank">
+                    <img src="https://img.icons8.com/ios-filled/30/ffffff/whatsapp.png" alt="WhatsApp">
+                </a>
+                <a href="https://www.facebook.com" target="_blank">
+                    <img src="https://img.icons8.com/ios-filled/30/ffffff/facebook.png" alt="Facebook">
+                </a>
+            </div>
+            <p class="text-gray-300">&copy; 2025 Yash Private Limited. All rights reserved.</p>
+        </div>
+    </footer>
+    
+</body>
+</html>

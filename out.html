@@ -1,0 +1,246 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Propify</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.3/css/all.min.css" rel="stylesheet"/>
+    <link href="https://fonts.googleapis.com/css2?family=Roboto:wght@400;700&display=swap" rel="stylesheet"/>
+    <style>
+        /* Custom CSS for responsiveness and animations */
+        .background-slider {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            z-index: -1;
+            overflow: hidden;
+        }
+        
+        .background-slider img {
+            position: absolute;
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+            opacity: 0;
+            transition: opacity 1s ease-in-out;
+        }
+        
+        .background-slider img.active {
+            opacity: 0.7;
+        }
+        
+        .header-bg {
+            background: rgba(0, 0, 0, 0.8);
+            position: sticky;
+            top: 0;
+            z-index: 100;
+        }
+        
+        .main-bg {
+            background: rgba(0, 0, 0, 0.7);
+            backdrop-filter: blur(5px);
+            margin: 1rem;
+        }
+        
+        .footer-bg {
+            background: linear-gradient(to right, #111827, #000000);
+        }
+        
+        .nav-link {
+            color: white;
+            padding: 0.5rem 1rem;
+            border-radius: 0.25rem;
+            transition: all 0.3s ease;
+        }
+        
+        .nav-link:hover {
+            background-color: rgba(255, 255, 255, 0.2);
+        }
+        
+        .card {
+            transition: transform 0.3s ease, box-shadow 0.3s ease;
+            height: 100%;
+        }
+        
+        .card:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 10px 25px rgba(0, 0, 0, 0.2);
+        }
+        
+        /* Animations */
+        @keyframes slideDown {
+            from { transform: translateY(-100%); }
+            to { transform: translateY(0); }
+        }
+        
+        @keyframes slideUp {
+            from { transform: translateY(50px); opacity: 0; }
+            to { transform: translateY(0); opacity: 1; }
+        }
+        
+        @keyframes slideLeft {
+            from { transform: translateX(-50px); opacity: 0; }
+            to { transform: translateX(0); opacity: 1; }
+        }
+        
+        @keyframes slideRight {
+            from { transform: translateX(50px); opacity: 0; }
+            to { transform: translateX(0); opacity: 1; }
+        }
+        
+        .animate-slide-down {
+            animation: slideDown 0.5s ease-out;
+        }
+        
+        .animate-slide-up {
+            animation: slideUp 0.7s ease-out;
+        }
+        
+        .animate-slide-left {
+            animation: slideLeft 0.7s ease-out;
+        }
+        
+        .animate-slide-right {
+            animation: slideRight 0.7s ease-out;
+        }
+        
+        /* Responsive adjustments */
+        @media (max-width: 768px) {
+            .header-content {
+                flex-direction: column;
+                text-align: center;
+                padding: 1rem;
+            }
+            
+            .header-content > div {
+                margin-bottom: 0.5rem;
+            }
+            
+            .main-bg {
+                padding: 1.5rem;
+                margin: 0.5rem;
+            }
+            
+            .card {
+                margin-bottom: 1rem;
+            }
+            
+            .text-x1 {
+                font-size: 1.5rem;
+            }
+        }
+        
+        @media (max-width: 480px) {
+            .nav-link {
+                display: block;
+                margin: 0.5rem 0;
+            }
+            
+            h1 {
+                font-size: 2rem;
+            }
+        }
+    </style>
+</head>
+<body class="font-roboto bg-gray-100">
+    <!-- Background Slider -->
+    <div class="background-slider">
+        <img src="b3.avif" alt="Background 1" class="active">
+        <img src="b2.jpg" alt="Background 2">
+        <img src="depositphotos_663110292-stock-photo-blur-image-living-room-furniture.jpg" alt="Background 3">
+    </div>
+    
+    <header class="header-bg shadow-md animate-slide-down">
+        <div class="container mx-auto flex flex-col md:flex-row justify-between items-center py-4 px-6 header-content">
+            <div class="flex items-center mb-4 md:mb-0">
+                <img alt="Propify logo" class="h-10" height="50" src='logo.jpg' width="50"/>
+                <div class="ml-3 md:ml-5">
+                    <span class="text-xl md:text-2xl font-bold text-white">Propify</span>
+                    <span class="block md:inline text-sm md:text-base text-gray-200 md:ml-2">secure and easy property handling</span>
+                </div>
+            </div>
+            <div class="flex flex-col md:flex-row items-center">
+                <a class="nav-link mx-2 font-bold my-1 md:my-0" href="yash.html">Home</a>
+                <a class="nav-link mx-2 font-bold my-1 md:my-0" href="signinpage.html">Sign In</a>
+            </div>
+        </div>
+    </header>
+    
+    <main class="container mx-auto mt-4 md:mt-8 main-bg p-4 md:p-8 rounded-lg shadow-lg animate-slide-up">
+        <h1 class="text-3xl md:text-4xl font-bold text-center mb-6 md:mb-8 text-white">Welcome to Propify</h1>
+        <div class="flex flex-wrap justify-center -mx-2">
+            <div class="w-full sm:w-1/2 md:w-1/3 p-2 animate-slide-left">
+                <a href="newhouse.html" class="block card bg-white rounded-lg shadow-lg overflow-hidden h-full">
+                    <img alt="A beautiful house with a garden" class="w-full h-48 object-cover" height="400" src="houses_and_land-5bfc3326c9e77c0051812eb3.jpg" width="600"/>
+                    <div class="p-4">
+                        <h2 class="text-xl font-bold mb-2">Property</h2>
+                        <p class="text-gray-800 mb-4">Manage and view all available houses for rent.</p>
+                    </div>
+                </a>
+            </div>
+            <div class="w-full sm:w-1/2 md:w-1/3 p-2 animate-slide-up">
+                <a href="signinpageowner.html" class="block card bg-white rounded-lg shadow-lg overflow-hidden h-full">
+                    <img alt="A house with keys in the foreground" class="w-full h-48 object-cover" height="400" src="pexels-photo-1571460.jpeg" width="600"/>
+                    <div class="p-4">
+                        <h2 class="text-xl font-bold mb-2">Owners</h2>
+                        <p class="text-gray-800 mb-4">Manage property owners and their listings.</p>
+                    </div>
+                </a>
+            </div>
+            <div class="w-full sm:w-1/2 md:w-1/3 p-2 animate-slide-right">
+                <a href="signinpagetenant.html" class="block card bg-white rounded-lg shadow-lg overflow-hidden h-full">
+                    <img alt="A smiling person holding a document" class="w-full h-48 object-cover" height="400" src="tenant.jpg" width="600"/>
+                    <div class="p-4">
+                        <h2 class="text-xl font-bold mb-2">Tenants</h2>
+                        <p class="text-gray-800 mb-4">Manage tenant information and rental agreements.</p>
+                    </div>
+                </a>
+            </div>
+        </div>
+    </main>
+    
+    <footer class="footer-bg shadow-md mt-8 py-6">
+        <div class="container mx-auto text-center">
+            <div class="flex justify-center space-x-6 mb-4">
+                <a href="https://www.instagram.com/yashwanth0415/" target="_blank" aria-label="Instagram">
+                    <img src="https://img.icons8.com/ios-filled/30/ffffff/instagram-new.png" alt="Instagram">
+                </a>
+                <a href="https://wa.me/9849954617/" target="_blank" aria-label="WhatsApp">
+                    <img src="https://img.icons8.com/ios-filled/30/ffffff/whatsapp.png" alt="WhatsApp">
+                </a>
+                <a href="https://www.facebook.com" target="_blank" aria-label="Facebook">
+                    <img src="https://img.icons8.com/ios-filled/30/ffffff/facebook.png" alt="Facebook">
+                </a>
+            </div>
+            <p class="text-gray-300 text-sm md:text-base">&copy; 2025 Yash Private Limited. All rights reserved.</p>
+        </div>
+    </footer>
+    
+    <script>
+        // Background slider functionality
+        document.addEventListener('DOMContentLoaded', function() {
+            const images = document.querySelectorAll('.background-slider img');
+            let current = 0;
+            
+            function changeBackground() {
+                images[current].classList.remove('active');
+                current = (current + 1) % images.length;
+                images[current].classList.add('active');
+            }
+            
+            setInterval(changeBackground, 5000);
+            
+            // Responsive adjustments that need JS
+            function handleResize() {
+                // Add any JS-based responsive adjustments here if needed
+            }
+            
+            window.addEventListener('resize', handleResize);
+            handleResize();
+        });
+    </script>
+</body>
+</html>

@@ -1,0 +1,430 @@
+<html>
+<head>
+    <title>Propify</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.3/css/all.min.css" rel="stylesheet"/>
+    <link href="https://fonts.googleapis.com/css2?family=Roboto:wght@400;700&display=swap" rel="stylesheet"/>
+    <link rel="stylesheet" href="css4.css">
+</head>
+<body class="font-roboto bg-gray-100">
+    <header class="header-bg shadow-md animate-slide-down">
+        <div class="container mx-auto flex justify-between items-center py-4 px-6 header-content">
+            <div class="flex items-center">
+                <img alt="Propify logo" class="h-10" height="50" src='logo.jpg' width="50"/>
+                <span class="ml-5 text-x1 font-bold text-white custom-font">Propify</span>
+                <span class="ml-2 text-gray-200">secure and easy property handling</span>
+            </div>
+            <div>
+                <a class="nav-link mx-2 font-bold" href="ankita.html">Home</a>
+                <a class="nav-link mx-2 font-bold" href="yash.html">Log out</a>
+            </div>
+        </div>
+    </header>
+    <main class="container mx-auto mt-8 main-bg">
+        <h1 class="text-4xl font-bold text-center mb-8 text-white">Property Dashboard</h1>
+        <div class="section-bg">
+            <h2 class="text-2xl font-bold mb-4">Filters</h2>
+            <form id="filter-form" class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-4">
+                <div>
+                    <label class="block text-gray-700 text-sm font-bold mb-2" for="area-size">Area Size (sq ft)</label>
+                    <select class="shadow appearance-none border rounded w-full py-2 px-3 text-gray-700 leading-tight focus:outline-none focus:shadow-outline" id="area-size">
+                        <option value="">Any</option>
+                        <option value="0-1000">Under 1,000</option>
+                        <option value="1000-2000">1,000 - 2,000</option>
+                        <option value="2000-3000">2,000 - 3,000</option>
+                        <option value="3000-4000">3,000 - 4,000</option>
+                        <option value="4000-5000">4,000 - 5,000</option>
+                        <option value="5000-999999">5,000+</option>
+                    </select>
+                </div>
+                <div>
+                    <label class="block text-gray-700 text-sm font-bold mb-2" for="rooms">Bedrooms</label>
+                    <select class="shadow appearance-none border rounded w-full py-2 px-3 text-gray-700 leading-tight focus:outline-none focus:shadow-outline" id="rooms">
+                        <option value="">Any</option>
+                        <option value="1">1</option>
+                        <option value="2">2</option>
+                        <option value="3">3</option>
+                        <option value="4">4</option>
+                        <option value="5">5+</option>
+                    </select>
+                </div>
+                <div>
+                    <label class="block text-gray-700 text-sm font-bold mb-2" for="location">Location</label>
+                    <select class="shadow appearance-none border rounded w-full py-2 px-3 text-gray-700 leading-tight focus:outline-none focus:shadow-outline" id="location">
+                        <option value="">Any</option>
+                        <option value="Springfield">Springfield</option>
+                        <option value="Shelbyville">Shelbyville</option>
+                        <option value="Hydrebad">Hydrebad</option>
+                        <option value="Warangal">Warangal</option>
+                        <option value="Capital City">Capital City</option>
+                        <option value="Zimbzbawe">Zimbzbawe</option>
+                        <option value="South Africa">South Africa</option>
+                        <option value="New york City">New york City</option>
+                        <option value="Los Angeles">Los Angeles</option>
+                        <option value="Chicago">Chicago</option>
+                        <option value="Miami">Miami</option>
+                        <option value="Austin">Austin</option>
+                    </select>
+                </div>
+                <div>
+                    <label class="block text-gray-700 text-sm font-bold mb-2" for="cost">Monthly Cost ($)</label>
+                    <select class="shadow appearance-none border rounded w-full py-2 px-3 text-gray-700 leading-tight focus:outline-none focus:shadow-outline" id="cost">
+                        <option value="">Any</option>
+                        <option value="0-1000">Under $1,000</option>
+                        <option value="1000-2000">$1,000 - $2,000</option>
+                        <option value="2000-3000">$2,000 - $3,000</option>
+                        <option value="3000-4000">$3,000 - $4,000</option>
+                        <option value="4000-5000">$4,000 - $5,000</option>
+                        <option value="5000-999999">$5,000+</option>
+                    </select>
+                </div>
+                <div class="col-span-1 md:col-span-2 lg:col-span-4 text-center">
+                    <button type="button" id="apply-filters" class="bg-blue-500 hover:bg-blue-700 text-white font-bold py-2 px-4 rounded focus:outline-none focus:shadow-outline">
+                        Apply Filters
+                    </button>
+                    <button type="button" id="reset-filters" class="ml-4 bg-gray-500 hover:bg-gray-700 text-white font-bold py-2 px-4 rounded focus:outline-none focus:shadow-outline">
+                        Reset Filters
+                    </button>
+                </div>
+            </form>
+        </div>
+        <div class="section-bg">
+            <h2 class="text-2xl font-bold mb-4">Available Properties</h2>
+            <p id="no-results" class="hidden text-center text-lg text-gray-600 py-8">No properties match your filters. Please try different criteria.</p>
+            <div id="properties-container" class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-4">
+                <!-- Property cards will be dynamically inserted here -->
+            </div>
+        </div>
+    </main>
+    <footer class="footer-bg shadow-md mt-8 bg-gradient-to-r from-gray-900 to-black text-white py-6">
+        <div class="container mx-auto text-center">
+            <div class="flex justify-center space-x-6 mb-4">
+                <a href="https://www.instagram.com" target="_blank">
+                    <img src="https://img.icons8.com/ios-filled/30/ffffff/instagram-new.png" alt="Instagram">
+                </a>
+                <a href="https://wa.me/yourwhatsappnumber" target="_blank">
+                    <img src="https://img.icons8.com/ios-filled/30/ffffff/whatsapp.png" alt="WhatsApp">
+                </a>
+                <a href="https://www.facebook.com" target="_blank">
+                    <img src="https://img.icons8.com/ios-filled/30/ffffff/facebook.png" alt="Facebook">
+                </a>
+            </div>
+            <p class="text-gray-300">&copy; 2025 Yash Private Limited. All rights reserved.</p>
+        </div>
+    </footer>
+
+    <script>
+        // Property data array with 20 properties
+        const properties = [
+            {
+                id: 1,
+                title: "123 Main St, Springfield",
+                image: "istockphoto-147205632-612x612.jpg",
+                beds: 3,
+                baths: 2,
+                area: 1500,
+                cost: 1200,
+                location: "Springfield",
+                description: "A beautiful house with a garden"
+            },
+            {
+                id: 2,
+                title: "456 Elm St, Shelbyville",
+                image: "premium_photo-1661915661139-5b6a4e4a6fcc.jpg",
+                beds: 4,
+                baths: 3,
+                area: 2000,
+                cost: 1500,
+                location: "Shelbyville",
+                description: "A modern house with a pool"
+            },
+            {
+                id: 3,
+                title: "234-33 White House, Hydrebad",
+                image: "yuvaraj_11zon.jpg",
+                beds: 8,
+                baths: 1,
+                area: 1200,
+                cost: 6000,
+                location: "Hydrebad",
+                description: "A cozy house with a large yard"
+            },
+            {
+                id: 4,
+                title: "789 Kaktiya colony, Warangal",
+                image: "AdobeStock_209124760.jpg",
+                beds: 2,
+                baths: 4,
+                area: 1500,
+                cost: 4000,
+                location: "Warangal",
+                description: "Modern apartment with great views"
+            },
+            {
+                id: 5,
+                title: "789 Oak St, Capital City",
+                image: "ai-generative-exterior-of-modern-luxury-house-with-garden-and-beautiful-sky-photo.jpg",
+                beds: 2,
+                baths: 1,
+                area: 1200,
+                cost: 1000,
+                location: "Capital City",
+                description: "Affordable home in the city"
+            },
+            {
+                id: 6,
+                title: "New Homes, Zimbzbawe",
+                image: "fc0740d7c26d93974e117cb88a81bc36.jpg",
+                beds: 7,
+                baths: 2,
+                area: 6000,
+                cost: 4000,
+                location: "Zimbzbawe",
+                description: "Spacious property with large garden"
+            },
+            {
+                id: 7,
+                title: "239 - Albania, South Africa",
+                image: "image4.webp",
+                beds: 4,
+                baths: 1,
+                area: 120,
+                cost: 4000,
+                location: "South Africa",
+                description: "Compact apartment in great location"
+            },
+            {
+                id: 8,
+                title: "450 Texas, New york City",
+                image: "which-mansion-tops-the-list-of-the-worlds-most-expensive-houses.webp",
+                beds: 8,
+                baths: 2,
+                area: 3400,
+                cost: 7000,
+                location: "New york City",
+                description: "Luxury mansion with premium amenities"
+            },
+            {
+                id: 9,
+                title: "54-76-22, Paul Apartments, Warangal",
+                image: "renovation.jpg",
+                beds: 2,
+                baths: 1,
+                area: 1200,
+                cost: 1000,
+                location: "Warangal",
+                description: "Affordable apartment in city center"
+            },
+            // New properties added below
+            {
+                id: 10,
+                title: "101 Palm Beach, Miami",
+                image: "https://images.unsplash.com/photo-1564013799919-ab600027ffc6",
+                beds: 3,
+                baths: 2,
+                area: 1800,
+                cost: 3500,
+                location: "Miami",
+                description: "Beachfront property with ocean view"
+            },
+            {
+                id: 11,
+                title: "202 Downtown, Chicago",
+                image: "https://images.unsplash.com/photo-1600585154340-be6161a56a0c",
+                beds: 2,
+                baths: 1,
+                area: 1100,
+                cost: 2800,
+                location: "Chicago",
+                description: "Modern loft in downtown"
+            },
+            {
+                id: 12,
+                title: "303 Hillside, Los Angeles",
+                image: "https://images.unsplash.com/photo-1512917774080-9991f1c4c750",
+                beds: 5,
+                baths: 4,
+                area: 3200,
+                cost: 8500,
+                location: "Los Angeles",
+                description: "Luxury hillside villa"
+            },
+            {
+                id: 13,
+                title: "404 Tech Park, Austin",
+                image: "https://images.unsplash.com/photo-1605276374104-dee2a0ed3cd6",
+                beds: 3,
+                baths: 2,
+                area: 1600,
+                cost: 2200,
+                location: "Austin",
+                description: "Modern home near tech hub"
+            },
+            {
+                id: 14,
+                title: "505 Lakeview, Chicago",
+                image: "https://images.unsplash.com/photo-1605146769289-440113cc3d00",
+                beds: 4,
+                baths: 3,
+                area: 2400,
+                cost: 4200,
+                location: "Chicago",
+                description: "Beautiful home with lake view"
+            },
+            {
+                id: 15,
+                title: "606 Sunset Blvd, Los Angeles",
+                image: "https://images.unsplash.com/photo-1512917774080-9991f1c4c750",
+                beds: 6,
+                baths: 5,
+                area: 4500,
+                cost: 12000,
+                location: "Los Angeles",
+                description: "Celebrity-style mansion"
+            },
+            {
+                id: 16,
+                title: "707 Downtown, Miami",
+                image: "https://images.unsplash.com/photo-1600585152220-90363fe7e115",
+                beds: 1,
+                baths: 1,
+                area: 800,
+                cost: 1800,
+                location: "Miami",
+                description: "Studio apartment in heart of city"
+            },
+            {
+                id: 17,
+                title: "808 Ranch, Austin",
+                image: "https://images.unsplash.com/photo-1564013799919-ab600027ffc6",
+                beds: 3,
+                baths: 2,
+                area: 2200,
+                cost: 3200,
+                location: "Austin",
+                description: "Rustic ranch with modern amenities"
+            },
+            {
+                id: 18,
+                title: "909 Highrise, New york City",
+                image: "https://images.unsplash.com/photo-1522708323590-d24dbb6b0267",
+                beds: 2,
+                baths: 2,
+                area: 1300,
+                cost: 5500,
+                location: "New york City",
+                description: "Luxury highrise apartment"
+            },
+            {
+                id: 19,
+                title: "1010 Suburban, Springfield",
+                image: "https://images.unsplash.com/photo-1583608205776-bfd35f0d9f83",
+                beds: 4,
+                baths: 3,
+                area: 2600,
+                cost: 2900,
+                location: "Springfield",
+                description: "Family home in quiet neighborhood"
+            },
+            {
+                id: 20,
+                title: "1111 Penthouse, Miami",
+                image: "https://images.unsplash.com/photo-1560448204-e02f11c3d0e2",
+                beds: 3,
+                baths: 3,
+                area: 2800,
+                cost: 9500,
+                location: "Miami",
+                description: "Luxury penthouse with panoramic views"
+            }
+        ];
+
+        // Function to render property cards
+        function renderProperties(propertiesToRender) {
+            const container = document.getElementById('properties-container');
+            const noResults = document.getElementById('no-results');
+            
+            container.innerHTML = '';
+            
+            if (propertiesToRender.length === 0) {
+                noResults.classList.remove('hidden');
+            } else {
+                noResults.classList.add('hidden');
+                propertiesToRender.forEach(property => {
+                    const card = document.createElement('div');
+                    card.className = 'card bg-white rounded-lg shadow-lg overflow-hidden animate-fade-in';
+                    card.innerHTML = `
+                        <img alt="${property.description}" class="w-full h-48 object-cover" src="${property.image}"/>
+                        <div class="p-4">
+                            <h3 class="text-xl font-bold mb-2">${property.title}</h3>
+                            <p class="text-gray-600 mb-4">${property.beds} Beds, ${property.baths} Baths, ${property.area} sq ft</p>
+                            <p class="text-gray-600 mb-4">$${property.cost.toLocaleString()}/month</p>
+                            <p class="text-gray-600 mb-4">Location: ${property.location}</p>
+                            <a class="text-blue-500 hover:underline" href="#">View Details</a>
+                        </div>
+                    `;
+                    container.appendChild(card);
+                });
+            }
+        }
+
+        // Function to filter properties based on selected filters
+        function filterProperties() {
+            const areaSize = document.getElementById('area-size').value;
+            const rooms = document.getElementById('rooms').value;
+            const location = document.getElementById('location').value;
+            const cost = document.getElementById('cost').value;
+            
+            let filtered = [...properties];
+            
+            // Filter by area size
+            if (areaSize) {
+                const [min, max] = areaSize.split('-').map(Number);
+                filtered = filtered.filter(property => {
+                    return property.area >= min && property.area <= max;
+                });
+            }
+            
+            // Filter by bedrooms
+            if (rooms) {
+                const numRooms = parseInt(rooms);
+                if (numRooms === 5) {
+                    filtered = filtered.filter(property => property.beds >= 5);
+                } else {
+                    filtered = filtered.filter(property => property.beds === numRooms);
+                }
+            }
+            
+            // Filter by location
+            if (location) {
+                filtered = filtered.filter(property => property.location === location);
+            }
+            
+            // Filter by cost
+            if (cost) {
+                const [min, max] = cost.split('-').map(Number);
+                filtered = filtered.filter(property => {
+                    return property.cost >= min && property.cost <= max;
+                });
+            }
+            
+            renderProperties(filtered);
+        }
+
+        // Function to reset all filters
+        function resetFilters() {
+            document.getElementById('filter-form').reset();
+            renderProperties(properties);
+        }
+
+        // Event listeners
+        document.getElementById('apply-filters').addEventListener('click', filterProperties);
+        document.getElementById('reset-filters').addEventListener('click', resetFilters);
+
+        // Initial render
+        document.addEventListener('DOMContentLoaded', () => {
+            renderProperties(properties);
+        });
+    </script>
+</body>
+</html>

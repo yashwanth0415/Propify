@@ -1,0 +1,568 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Propify</title>
+    <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.3/css/all.min.css" rel="stylesheet"/>
+    <link href="https://fonts.googleapis.com/css2?family=Roboto:wght@400;700&display=swap" rel="stylesheet"/>
+    <link href="https://fonts.googleapis.com/css2?family=Gabriola&display=swap" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Poppins&display=swap" rel="stylesheet">
+    <style>
+        /* Global Styles */
+        body {
+            font-family: 'Poppins', sans-serif;
+            margin: 0;
+            padding: 0;
+            background-color: #f8f9fa;
+        }
+
+        .container {
+            width: 90%;
+            max-width: 1200px;
+            margin: 0 auto;
+        }
+
+        .flex {
+            display: flex;
+        }
+
+        .justify-between {
+            justify-content: space-between;
+        }
+
+        .items-center {
+            align-items: center;
+        }
+
+        .text-center {
+            text-align: center;
+        }
+
+        .text-white {
+            color: white;
+        }
+
+        .text-gray-200 {
+            color: #e2e8f0;
+        }
+
+        .text-gray-300 {
+            color: #d1d5db;
+        }
+
+        .text-gray-800 {
+            color: #1f2937;
+        }
+
+        .bg-white {
+            background-color: white;
+        }
+
+        .rounded-lg {
+        border-radius: 0.5rem; /* Tailwind's rounded-lg equivalent */
+        transition: border-radius 0.3s ease-in-out;
+    }
+    .rounded-lg:hover {
+        border-radius: 1rem;
+    }
+
+    .shadow-lg {
+        box-shadow: 0 0.5rem 1rem rgba(0, 0, 0, 0.15); /* Tailwind's shadow-lg equivalent */
+        transition: box-shadow 0.3s ease-in-out;
+    }
+    .shadow-lg:hover {
+        box-shadow: 0 1rem 2rem rgba(0, 0, 0, 0.3);
+    }
+
+        .overflow-hidden {
+            overflow: hidden;
+        }
+
+        .object-cover {
+            object-fit: cover;
+        }
+
+        .w-full {
+            width: 100%;
+        }
+
+        .h-48 {
+            height: 12rem;
+        }
+
+        .p-4 {
+            padding: 1rem;
+        }
+
+        .p-6 {
+            padding: 1.5rem;
+        }
+
+        .py-4 {
+            padding-top: 1rem;
+            padding-bottom: 1rem;
+        }
+
+        .px-6 {
+            padding-left: 1.5rem;
+            padding-right: 1.5rem;
+        }
+
+        .mt-8 {
+            margin-top: 2rem;
+        }
+
+        .mb-4 {
+            margin-bottom: 1rem;
+        }
+
+        .mb-8 {
+            margin-bottom: 2rem;
+        }
+
+        .space-x-6 > * + * {
+            margin-left: 1.5rem;
+        }
+
+        /* Header Styles */
+        .header-bg {
+            background: linear-gradient(to right, #6067ea, #1a1a1a);
+            position: relative;
+            overflow: hidden;
+        }
+
+        .header-bg::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: url("renovation.jpg") no-repeat center center/cover;
+            opacity: 0.2;
+            z-index: 0;
+        }
+
+        .header-content {
+            position: relative;
+            z-index: 1;
+        }
+
+        .custom-font {
+            font-family: 'Gabriola', cursive;
+            font-size: 3rem;
+        }
+
+        /* Navigation Link Styles */
+        .nav-link {
+            position: relative;
+            display: inline-block;
+            padding: 0.5rem 1rem;
+            color: #ffffff;
+            text-decoration: none;
+            transition: color 0.3s ease;
+        }
+
+        .nav-link::before,
+        .nav-link::after {
+            content: '';
+            position: absolute;
+            width: 100%;
+            height: 2px;
+            background-color: #e2e8f0;
+            transition: transform 0.3s ease;
+        }
+
+        .nav-link::before {
+            top: 0;
+            left: 0;
+            transform: scaleX(0);
+            transform-origin: right;
+        }
+
+        .nav-link::after {
+            bottom: 0;
+            right: 0;
+            transform: scaleX(0);
+            transform-origin: left;
+        }
+
+        .nav-link:hover {
+            color: #fff;
+        }
+
+        .nav-link:hover::before,
+        .nav-link:hover::after {
+            transform: scaleX(1);
+        }
+
+        /* Main Content Styles */
+        .main-bg {
+            background-image: url("background.jpg");
+            background-size: cover;
+            background-position: center;
+            padding: 2rem;
+            border-radius: 0.5rem;
+            box-shadow: 0 10px 20px rgba(0, 0, 0, 0.2);
+            animation: fadeIn 1s forwards;
+        }
+
+        .card {
+            transition: transform 0.3s ease, box-shadow 0.3s ease;
+            background-color: #fff;
+            border-radius: 0.5rem;
+            box-shadow: 0 0.5rem 1rem rgba(0, 0, 0, 0.15);
+            overflow: hidden;
+        }
+        .card:hover {
+            transform: translateY(-10px);
+            box-shadow: 0 10px 20px rgba(0, 0, 0, 0.2);
+        }
+        .card img {
+            transition: transform 0.3s ease;
+            width: 100%;
+            height: auto;
+            object-fit: cover;
+            height: 48; /* Tailwind's h-48 equivalent, adjust as needed */
+        }
+        .card:hover img {
+            transform: scale(1.05);
+        }
+
+        /* Footer Styles */
+        .footer-bg {
+            background: linear-gradient(to right, #8f94fb, #4e54c8);
+        }
+
+        /* Animations */
+        @keyframes fadeIn {
+            from {
+                opacity: 0;
+            }
+            to {
+                opacity: 1;
+            }
+        }
+
+        @keyframes slideDown {
+            from {
+                transform: translateY(-100%);
+                opacity: 0;
+            }
+            to {
+                transform: translateY(0);
+                opacity: 1;
+            }
+        }
+
+        @keyframes slideUp {
+            from {
+                transform: translateY(100%);
+                opacity: 0;
+            }
+            to {
+                transform: translateY(0);
+                opacity: 1;
+            }
+        }
+
+        @keyframes slideLeft {
+            from {
+                transform: translateX(-100%);
+                opacity: 0;
+            }
+            to {
+                transform: translateX(0);
+                opacity: 1;
+            }
+        }
+
+        @keyframes slideRight {
+            from {
+                transform: translateX(100%);
+                opacity: 0;
+            }
+            to {
+                transform: translateX(0);
+                opacity: 1;
+            }
+        }
+
+        .animate-slide-down {
+            animation: slideDown 1s ease-out;
+        }
+
+        .animate-slide-up {
+            animation: slideUp 1s ease-out;
+        }
+
+        .animate-slide-left {
+            animation: slideLeft 1s ease-out;
+        }
+
+        .animate-slide-right {
+            animation: slideRight 1s ease-out;
+        }
+
+        /* Background Slider Styles */
+        .background-slider {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            z-index: -1;
+            overflow: hidden;
+        }
+
+        .background-slider img {
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+            opacity: 0;
+            transition: opacity 1s ease-in-out;
+        }
+
+        .background-slider img.active {
+            opacity: 1;
+        }
+        container {
+            margin-left: auto;
+            margin-right: auto;
+            max-width: 1280px; /* Tailwind's container max-w-7xl equivalent */
+        }
+        .mx-auto {
+            margin-left: auto;
+            margin-right: auto;
+        }
+        .mt-8 {
+            margin-top: 2rem; /* Tailwind's mt-8 equivalent */
+        }
+        .p-8 {
+            padding: 2rem; /* Tailwind's p-8 equivalent */
+        }
+        .rounded-lg {
+            border-radius: 0.5rem; /* Tailwind's rounded-lg equivalent */
+        }
+        .shadow-lg {
+            box-shadow: 0 0.5rem 1rem rgba(0, 0, 0, 0.15); /* Tailwind's shadow-lg equivalent */
+        }
+        .text-4xl {
+        font-size: 2.25rem; /* Tailwind's text-4xl equivalent */
+        line-height: 2.5rem; /* Tailwind's leading-tight equivalent */
+        position: relative;
+    }
+    .text-4xl::after {
+        content: '';
+        position: absolute;
+        left: 0;
+        bottom: -0.5rem;
+        width: 100%;
+        height: 0.25rem;
+        background: linear-gradient(90deg, rgba(255,0,150,1) 0%, rgba(0,204,255,1) 100%);
+        transition: height 0.3s ease-in-out;
+    }
+    .text-4xl:hover::after {
+        height: 0.5rem;
+    }
+    .font-bold {
+        font-weight: bold; /* Tailwind's font-bold equivalent */
+        transition: color 0.3s ease-in-out;
+    }
+    .font-bold:hover {
+        color: #ff0099;
+    }
+    .text-center {
+        text-align: center; /* Tailwind's text-center equivalent */
+    }
+    .mb-8 {
+        margin-bottom: 2rem; /* Tailwind's mb-8 equivalent */
+    }
+    .text-white {
+        color: #ffffff; /* Tailwind's text-white equivalent */
+        position: relative;
+    }
+    .text-white::before {
+        content: '';
+        position: absolute;
+        top: 0;
+        left: 0;
+        width: 100%;
+        height: 100%;
+        background: rgba(0, 0, 0, 0.5);
+        z-index: -1;
+        transition: background 0.3s ease-in-out;
+    }
+    .text-white:hover::before {
+        background: rgba(0, 0, 0, 0.7);
+    }
+    .flex {
+        display: flex; /* Tailwind's flex equivalent */
+    }
+    .flex-wrap {
+        flex-wrap: wrap; /* Tailwind's flex-wrap equivalent */
+    }
+    .justify-center {
+        justify-content: center; /* Tailwind's justify-center equivalent */
+    }
+    .w-full {
+        width: 100%; /* Tailwind's w-full equivalent */
+    }
+    .md\:w-1\/3 {
+        width: 33.333333%; /* Tailwind's md:w-1/3 equivalent */
+        transition: transform 0.3s ease-in-out;
+    }
+    .md\:w-1\/3:hover {
+        transform: scale(1.05);
+    }
+        @media (min-width: 768px) { /* Medium screens breakpoint */
+            .md\:w-1\/3 {
+                width: 33.333333%;
+            }
+        }
+        .p-4 {
+            padding: 1rem; /* Tailwind's p-4 equivalent */
+        }
+        .block {
+            display: block; /* Tailwind's block equivalent */
+        }
+        .bg-white {
+            background-color: #ffffff; /* Tailwind's bg-white equivalent */
+        }
+        .overflow-hidden {
+            overflow: hidden; /* Tailwind's overflow-hidden equivalent */
+        }
+        .text-xl {
+            font-size: 1.25rem; /* Tailwind's text-xl equivalent */
+            line-height: 1.75rem; /* Tailwind's leading-tight equivalent */
+        }
+        .mb-2 {
+            margin-bottom: 0.5rem; /* Tailwind's mb-2 equivalent */
+        }
+        .text-gray-800 {
+            color: #6b7280; /* Tailwind's text-gray-800 equivalent */
+        }
+        .mb-4 {
+            margin-bottom: 1rem; /* Tailwind's mb-4 equivalent */
+        }
+        .footer-bg .container {
+            text-align: center; /* Tailwind's text-center in footer container */
+        }
+        .justify-center {
+            justify-content: center; /* Tailwind's justify-center equivalent */
+        }
+        .space-x-6 {
+            margin-left: -1.5rem;
+            margin-right: -1.5rem; /* Tailwind's space-x-6 negative margin equivalent */
+        }
+        .space-x-6 > * + * {
+            margin-left: 1.5rem; /* Tailwind's space-x-6 spacing for children */
+        }
+        .mb-4 {
+            margin-bottom: 1rem; /* Tailwind's mb-4 in footer social icons */
+        }
+        .text-gray-300 {
+            color: #d1d5db; /* Tailwind's text-gray-300 equivalent */
+        }
+        .text-x1 {
+            font-size: 1.125rem; /* Tailwind's text-xl, assuming it's a typo and meant to be xl */
+            line-height: 1.75rem; /* Tailwind's leading-tight equivalent */
+        }
+        .text-gray-200 {
+            color: #e5e7eb; /* Tailwind's text-gray-200 equivalent */
+        }
+        .ml-5 {
+            margin-left: 1.25rem; /* Tailwind's ml-5 equivalent */
+        }
+        .items-center {
+            align-items: center; /* Tailwind's items-center equivalent */
+        }
+        .flex-items-center {
+            display: flex;
+            align-items: center;
+        }
+</style>
+    </style>
+</head>
+<body>
+    <!-- Background Slider -->
+    <div class="background-slider">
+        <img src="b3.avif" alt="Background 1" class="active">
+        <img src="b2.jpg" alt="Background 2">
+        <img src="depositphotos_663110292-stock-photo-blur-image-living-room-furniture.jpg" alt="Background 3">
+    </div>
+
+    <!-- Header -->
+    <header class="header-bg shadow-md animate-slide-down">
+        <div class="container flex justify-between items-center py-4 px-6 header-content">
+            <div class="flex items-center">
+                <img alt="Propify logo" class="h-10" height="50" src='logo.jpg' width="50"/>
+                <span class="ml-5 text-x1 font-bold text-white custom-font">Propify</span>
+                <span class="ml-2 text-gray-200">secure and easy property handling</span>
+            </div>
+            <div>
+                <a class="nav-link mx-2 font-bold" href="yash.html">Home</a>
+                <a class="nav-link mx-2 font-bold" href="signinpage.html">Sign In</a>
+            </div>
+        </div>
+    </header>
+
+    <!-- Main Content -->
+    <main class="container mt-8 main-bg p-8 rounded-lg shadow-lg animate-slide-up">
+        <h1 class="text-4xl font-bold text-center mb-8 text-white">Welcome to Propify</h1>
+        <div class="flex flex-wrap justify-center">
+            <div class="w-full md:w-1/3 p-4 animate-slide-left">
+                <a href="newhouse.html" class="block card">
+                    <img alt="A beautiful house with a garden"  height="400" src="houses_and_land-5bfc3326c9e77c0051812eb3.jpg" width="500"/>
+                    <div class="p-4">
+                        <h2 class="text-xl font-bold mb-2">Property</h2>
+                        <p class="text-gray-800 mb-4">Manage and view all available houses for rent.</p>
+                    </div>
+                </a>
+            </div>
+            <div class="w-full md:w-1/3 p-4 animate-slide-up">
+                <a href="signinpageowner.html" class="block card">
+                    <img alt="A house with keys in the foreground" height="400" src="pexels-photo-1571460.jpeg" width="600"/>
+                    <div class="p-4">
+                        <h2 class="text-xl font-bold mb-2">Owners</h2>
+                        <p class="text-gray-800 mb-4">Manage property owners and their listings.</p>
+                    </div>
+                </a>
+            </div>
+            <div class="w-full md:w-1/3 p-4 animate-slide-right">
+                <a href="signinpagetenant.html" class="block card">
+                    <img alt="A smiling person holding a document" height="400" src="tenant.jpg" width="600"/>
+                    <div class="p-4">
+                        <h2 class="text-xl font-bold mb-2">Tenants</h2>
+                        <p class="text-gray-800 mb-4">Manage tenant information and rental agreements.</p>
+                    </div>
+                </a>
+            </div>
+        </div>
+    </main>
+
+    <!-- Footer -->
+    <footer class="footer-bg shadow-md mt-8 bg-gradient-to-r from-gray-900 to-black text-white py-6">
+        <div class="container text-center">
+            <div class="flex justify-center space-x-6 mb-4">
+                <a href="https://www.instagram.com/yashwanth0415/" target="_blank">
+                    <img src="https://img.icons8.com/ios-filled/30/ffffff/instagram-new.png" alt="Instagram">
+                </a>
+                <a href="https://wa.me/9849954617/" target="_blank">
+                    <img src="https://img.icons8.com/ios-filled/30/ffffff/whatsapp.png" alt="WhatsApp">
+                </a>
+                <a href="https://www.facebook.com" target="_blank">
+                    <img src="https://img.icons8.com/ios-filled/30/ffffff/facebook.png" alt="Facebook">
+                </a>
+            </div>
+            <p class="text-gray-300">&copy; 2025 Yash Private Limited. All rights reserved.</p>
+        </div>
+    </footer>
+
+    <script src="script.js"></script>
+</body>
+</html>
